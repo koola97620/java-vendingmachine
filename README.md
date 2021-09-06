@@ -1,4 +1,4 @@
-# java-vendingmachine
+# java-vendingMachine
 
 ## 기능 목록
 
