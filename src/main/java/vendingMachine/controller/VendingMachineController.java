@@ -16,10 +16,10 @@ public class VendingMachineController {
         Money inputMoney = new Money(inputView.inputMoney());
         vendingMachine.inputMoney(inputMoney);
 
-        outputView.printRemainMoney(vendingMachine);
+        outputView.printRemainMoney(vendingMachine.getRemainMoney());
         boolean successSellingProduct = vendingMachine.sell(new Name(inputView.inputProductName()));
         if (!successSellingProduct) {
-            outputView.printBalance();
+            outputView.printBalance(vendingMachine.calculate);
         }
 
 
