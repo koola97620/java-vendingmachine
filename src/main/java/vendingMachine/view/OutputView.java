@@ -8,4 +8,8 @@ public class OutputView {
     public void printRemainMoney(VendingMachine vendingMachine) {
         System.out.println(REMAIN_MONEY + vendingMachine.getRemainMoney());
     }
+
+    public void printBalance() {
+        System.out.println("잔돈");
+    }
 }

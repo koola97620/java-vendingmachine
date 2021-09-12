@@ -25,4 +25,8 @@ public class InputView {
         return new Scanner(System.in).nextInt();
     }
 
+    public String inputProductName() {
+        System.out.println(INPUT_PRODUCT_NAME);
+        return new Scanner(System.in).next();
+    }
 }

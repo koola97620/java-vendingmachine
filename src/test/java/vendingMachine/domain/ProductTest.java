@@ -12,6 +12,6 @@ public class ProductTest {
         Product product = new Product(productString);
         assertThat(product.getName()).isEqualTo(new Name("콜라"));
         assertThat(product.getQuantity()).isEqualTo(new Quantity("20"));
-        assertThat(product.getPrice()).isEqualTo(new Price("1500"));
+        assertThat(product.getPrice()).isEqualTo(new Money(1500));
     }
 }

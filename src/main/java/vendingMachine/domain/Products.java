@@ -2,11 +2,12 @@ package vendingMachine.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Products {
 
-    private final List<Product> productList;
+    private List<Product> productList;
 
     public Products(String[] productsString) {
         productList = Arrays.stream(productsString)
@@ -14,7 +15,17 @@ public class Products {
                 .collect(Collectors.toList());
     }
 
+    public Products(List<Product> productList) {
+        this.productList = productList;
+    }
+
     public List<Product> getProductList() {
         return productList;
+    }
+
+    public Optional<Product> containProduct(Name productName) {
+        return productList.stream()
+                .filter(product -> productName.equals(product.getName()))
+                .findAny();
     }
 }

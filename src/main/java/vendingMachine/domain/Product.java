@@ -5,13 +5,13 @@ import java.util.Objects;
 public class Product {
     private Name name;
     private Quantity quantity;
-    private Price price;
+    private Money price;
 
     public Product(String productString) {
         String[] splittedProductString = productString.split(",");
         name = new Name(splittedProductString[0]);
         quantity = new Quantity(splittedProductString[1]);
-        price = new Price(splittedProductString[2]);
+        price = new Money(Integer.parseInt(splittedProductString[2]));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Product {
         return quantity;
     }
 
-    public Price getPrice() {
+    public Money getPrice() {
         return price;
     }
 }
