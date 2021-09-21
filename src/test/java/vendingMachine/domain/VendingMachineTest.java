@@ -51,7 +51,9 @@ class VendingMachineTest {
         vendingMachine.inputMoney(new Money(500));
         String returnChange = vendingMachine.calculateBalance();
         assertThat(returnChange).isEqualTo(
-                "100원 - 4개\n50원 - 1개"
+                "미반환금액: 50\n"
+                        + "잔돈\n"
+                        +"100원 - 4개\n50원 - 1개"
         );
     }
 
@@ -61,7 +63,9 @@ class VendingMachineTest {
         vendingMachine.inputMoney(new Money(300));
         String returnChange = vendingMachine.calculateBalance();
         assertThat(returnChange).isEqualTo(
-                "100원 - 3개"
+                "미반환금액: 0\n"
+                        + "잔돈\n"
+                        + "100원 - 3개"
         );
     }
 
