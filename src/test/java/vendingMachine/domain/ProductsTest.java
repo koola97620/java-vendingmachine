@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductsTest {
@@ -18,8 +20,8 @@ class ProductsTest {
     @DisplayName("입력받은 문자열을 상품으로 바꾼다.")
     @Test
     void create_product() {
-        assertThat(products.getProductList())
-                .containsExactly(new Product("콜라,20,1500"), new Product("사이다,10,1000"));
+        assertThat(products.getProduct("콜라")).isEqualTo(new Product("콜라,20,1500"));
+        assertThat(products.getProduct("사이다")).isEqualTo(new Product("사이다,10,1000"));
     }
 
     @DisplayName("상품 최소 금액 구하기")

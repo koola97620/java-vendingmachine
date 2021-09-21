@@ -19,7 +19,7 @@ public class CashCounter {
         builder
                 .append("미반환금액: ")
                 .append(getNotReturnMoney(inputMoney)).append("\n")
-                .append(CashExchanger.exchange(inputMoney.getMoney()));
+                .append(CashExchanger.exchange(vendingMachineMoney.subtract(inputMoney)));
         return builder.toString();
     }
 

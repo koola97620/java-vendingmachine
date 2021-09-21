@@ -1,38 +1,41 @@
 package vendingMachine.domain;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Products {
 
-    private List<Product> productList;
+    private Map<Name, Product> map;
 
     public Products(String[] productsString) {
-        productList = Arrays.stream(productsString)
+        map = Arrays.stream(productsString)
                 .map(product -> new Product(product.substring(1, product.length() - 1)))
-                .collect(Collectors.toList());
+                .collect(Collectors.toMap(product -> product.getName(), product -> product));
     }
 
     public Products(List<Product> productList) {
-        this.productList = productList;
+        map = productList.stream()
+                .collect(Collectors.toMap(product -> product.getName(), product -> product));
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public Product getProduct(String name) {
+        return map.get(new Name(name));
     }
 
     public Optional<Product> containProduct(Name productName) {
-        return productList.stream()
-                .filter(product -> productName.equals(product.getName()))
-                .findAny();
+        return map.entrySet().stream()
+                .filter(entry -> entry.getKey().equals(productName))
+                .findAny()
+                .map(entry -> entry.getValue());
     }
 
     public Money minPrice() {
-        return productList.stream()
+        return map.values().stream()
                 .map(Product::getPrice)
                 .min(Comparator.comparingInt(Money::getMoney)).get();
+    }
+
+    public void sellProduct(Product product) {
+
     }
 }

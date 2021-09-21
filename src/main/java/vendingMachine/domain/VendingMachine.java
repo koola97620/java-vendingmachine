@@ -32,6 +32,7 @@ public class VendingMachine {
         }
 
         inputMoney = new Money(inputMoney.subtract(product.getPrice()));
+        products.sellProduct(product);
         return true;
     }
 
