@@ -7,7 +7,7 @@ public class OutputView {
         System.out.println(REMAIN_MONEY + remainMoney);
     }
 
-    public void printBalance() {
-        System.out.println("잔돈");
+    public void printBalance(String balance) {
+        System.out.println(balance);
     }
 }

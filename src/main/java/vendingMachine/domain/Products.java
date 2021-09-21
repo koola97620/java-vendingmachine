@@ -1,6 +1,7 @@
 package vendingMachine.domain;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,5 +28,11 @@ public class Products {
         return productList.stream()
                 .filter(product -> productName.equals(product.getName()))
                 .findAny();
+    }
+
+    public Money minPrice() {
+        return productList.stream()
+                .map(Product::getPrice)
+                .min(Comparator.comparingInt(Money::getMoney)).get();
     }
 }

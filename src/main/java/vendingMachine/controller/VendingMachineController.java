@@ -1,6 +1,9 @@
 package vendingMachine.controller;
 
-import vendingMachine.domain.*;
+import vendingMachine.domain.Money;
+import vendingMachine.domain.Name;
+import vendingMachine.domain.Products;
+import vendingMachine.domain.VendingMachine;
 import vendingMachine.view.InputView;
 import vendingMachine.view.OutputView;
 
@@ -12,16 +15,12 @@ public class VendingMachineController {
         Money vendingMachineMoney = new Money(inputView.settingVendingMachinePossessedMoney());
         Products products = new Products(inputView.inputProducts());
         VendingMachine vendingMachine = new VendingMachine(vendingMachineMoney, products);
+        vendingMachine.inputMoney(new Money(inputView.inputMoney()));
 
-        Money inputMoney = new Money(inputView.inputMoney());
-        vendingMachine.inputMoney(inputMoney);
-
-        outputView.printRemainMoney(vendingMachine.getRemainMoney());
-        boolean successSellingProduct = vendingMachine.sell(new Name(inputView.inputProductName()));
-        if (!successSellingProduct) {
-            outputView.printBalance(vendingMachine.calculate);
+        while (vendingMachine.possibleSellingProduct()) {
+            outputView.printRemainMoney(vendingMachine.getRemainMoney());
+            vendingMachine.sell(new Name(inputView.inputProductName()));
         }
-
-
+        outputView.printBalance(vendingMachine.calculateBalance());
     }
 }

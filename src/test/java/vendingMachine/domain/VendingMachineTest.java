@@ -45,5 +45,24 @@ class VendingMachineTest {
         assertThat(vendingMachine.getRemainMoney()).isEqualTo(1000);
     }
 
+    @DisplayName("자판기 보유금이 남은 금액보다 작으면 투입음액을 반환한다.")
+    @Test
+    void test() {
+        vendingMachine.inputMoney(new Money(500));
+        String returnChange = vendingMachine.calculateBalance();
+        assertThat(returnChange).isEqualTo(
+                "100원 - 4개\n50원 - 1개"
+        );
+    }
+
+    @DisplayName("자판기 보유금이 남은 금액보다 크면 남은 금액을 반환한다.")
+    @Test
+    void test2() {
+        vendingMachine.inputMoney(new Money(300));
+        String returnChange = vendingMachine.calculateBalance();
+        assertThat(returnChange).isEqualTo(
+                "100원 - 3개"
+        );
+    }
 
 }
